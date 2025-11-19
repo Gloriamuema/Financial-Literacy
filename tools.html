@@ -73,6 +73,49 @@
         </section>
 
         <hr>
+<section id="irregular-income-tool" aria-labelledby="irr-income-heading">
+    <h2 id="irr-income-heading">💸 Irregular Income Tool: Find Your Safe Budget</h2>
+    <p>If your pay changes every month (gig work, tips, seasonal), use this tool to find the lowest safe amount you can budget for.</p>
+
+    <form id="irregular-income-form">
+        <h3>Input Your Last 4 Months of Income (After Taxes)</h3>
+        <div class="input-group">
+            <label for="income-m1">Month 1 Income</label>
+            <input type="number" id="income-m1" placeholder="e.g., 2800" required min="0">
+        </div>
+        <div class="input-group">
+            <label for="income-m2">Month 2 Income</label>
+            <input type="number" id="income-m2" placeholder="e.g., 2100" required min="0">
+        </div>
+        <div class="input-group">
+            <label for="income-m3">Month 3 Income</label>
+            <input type="number" id="income-m3" placeholder="e.g., 2450" required min="0">
+        </div>
+        <div class="input-group">
+            <label for="income-m4">Month 4 Income</label>
+            <input type="number" id="income-m4" placeholder="e.g., 3000" required min="0">
+        </div>
+
+        <button type="submit" class="cta-button primary">Calculate Safe Income</button>
+    </form>
+
+    <div id="irr-results" class="results-box" aria-live="polite" hidden>
+        <h3>Your Safe Budget Numbers</h3>
+        <div class="result-line">
+            <span>Average Monthly Income:</span>
+            <span id="result-average" class="value-income"></span>
+        </div>
+        <div class="result-line final-line">
+            <span>**SAFE BASE BUDGET (Lowest Income):**</span>
+            <span id="result-safe-base" class="value-remaining"></span>
+        </div>
+        <div class="advice-box">
+            <p id="advice-irr-plan"></p>
+        </div>
+    </div>
+</section>
+
+        <hr>
 
         <section id="aid-finder-tool" aria-labelledby="aid-finder-heading">
             <h2 id="aid-finder-heading">Local Aid & Resources Finder</h2>
@@ -102,5 +145,6 @@
 
     <script src="calculator.js"></script>
     <script src="aid-finder.js"></script>
+    <script src="irregular-income.js"></script>
 </body>
 </html>

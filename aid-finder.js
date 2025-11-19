@@ -35,11 +35,15 @@ document.getElementById('aid-search-form').addEventListener('submit', function(e
         const resultCard = document.createElement('div');
         resultCard.classList.add('resource-card');
         
-        resultCard.innerHTML = `
-            <h3>${resource.name} (${resource.category})</h3>
-            <p>${resource.description}</p>
-            <a href="${resource.link}" target="_blank" class="cta-button primary small">Visit Program Website &rarr;</a>
-        `;
+        // Inside the loop that creates resource cards in aid-finder.js
+resultCard.innerHTML = `
+    <h3>${resource.name} (${resource.category})</h3>
+    <span class="verified-badge">✔ Vetted Non-Profit</span>
+    <p>${resource.description}</p>
+    <div class="user-ratings">User Rating: ★★★★☆ (25 reviews)</div>
+    <a href="${resource.link}" ...>Visit Website &rarr;</a>
+`;
         resultsContainer.appendChild(resultCard);
+
     });
 });

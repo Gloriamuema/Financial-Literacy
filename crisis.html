@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Zone - Need Help Now</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style> 
+        /* Add specific crisis zone styles */
+        .crisis-header { background-color: #dc3545; color: white; text-align: center; padding: 30px; }
+        .crisis-header h1 { color: white; }
+        .crisis-triage-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 30px; }
+        .crisis-card { padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background-color: #fff; border-top: 5px solid #dc3545; }
+        .crisis-card h3 { color: #dc3545; margin-bottom: 10px; }
+        .script-box { background-color: #ffe5e7; border: 1px dashed #dc3545; padding: 15px; border-radius: 4px; margin-top: 15px; }
+        .script-box button { margin-top: 10px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">FINANCE FORWARD</div>
+        <nav class="main-nav" aria-label="Main Navigation">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Learn</a>
+            <a href="tools.html">Tools</a>
+            <a href="crisis.html" style="background-color: #dc3545; color: white;">Crisis Zone</a>
+            <a href="about.html">About Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="crisis-header" aria-labelledby="crisis-heading">
+            <h1 id="crisis-heading">⚠️ Need Help NOW?</h1>
+            <p>If you are facing immediate eviction, disconnection, or overwhelming debt calls, start here. This is NOT a long-term plan, this is **Triage.**</p>
+        </section>
+
+        <section class="crisis-triage-grid">
+            <div class="crisis-card">
+                <h3>Debt Collectors Are Calling</h3>
+                <p>You have rights. Don't panic, and don't pay anything until you know the debt is real.</p>
+                
+                <h4>Use this script:</h4>
+                <div class="script-box">
+                    <p id="script-text">"I am recording this call. I dispute the validity of this debt and request all verification documents be sent to me in writing at [YOUR ADDRESS]. Please stop all phone contact immediately."</p>
+                    <button class="cta-button primary small copy-script" data-target="script-text">Copy Script</button>
+                </div>
+                <p class="mt-2">**Next Step:** Find a non-profit credit counselor near you.</p>
+                <a href="tools.html#aid-finder-tool" class="link-arrow">Find Local Counselor &rarr;</a>
+            </div>
+            
+            <div class="crisis-card">
+                <h3>Eviction or Foreclosure Notice</h3>
+                <p>Time is critical. Do not ignore papers from the court or your landlord.</p>
+                
+                <h4>Immediate Checklist:</h4>
+                <ul>
+                    <li>**1. Call Legal Aid:** Search for free legal services in your county immediately.</li>
+                    <li>**2. Gather Papers:** Find your lease, eviction notice, and court dates.</li>
+                    <li>**3. Rental Assistance:** Search for emergency rent relief funds (use the Local Aid Finder).</li>
+                </ul>
+                <a href="tools.html#aid-finder-tool" class="link-arrow">Find Emergency Rent Aid &rarr;</a>
+            </div>
+            
+            <div class="crisis-card">
+                <h3>Utility Shut-Off Notice</h3>
+                <p>Call the company *before* the shut-off date. Many providers have emergency programs.</p>
+                
+                <h4>Action Plan:</h4>
+                <ul>
+                    <li>**1. Call Your Provider:** Ask for a payment arrangement or an extension.</li>
+                    <li>**2. Check LIHEAP:** This federal program offers energy assistance.</li>
+                    <li>**3. Local Charities:** Local churches and non-profits often have utility funds.</li>
+                </ul>
+                <a href="tools.html#aid-finder-tool" class="link-arrow">Find Utility Assistance &rarr;</a>
+            </div>
+        </section>
+        
+        <section class="mt-4 text-center">
+            <h2 class="text-danger">If you are in immediate danger, dial 911 or your local emergency number.</h2>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        </footer>
+    <script>
+        // JavaScript for Copy Script functionality
+        document.querySelectorAll('.copy-script').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const scriptText = document.getElementById(targetId).textContent;
+                navigator.clipboard.writeText(scriptText)
+                    .then(() => {
+                        this.textContent = 'Copied!';
+                        setTimeout(() => this.textContent = 'Copy Script', 2000);
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
