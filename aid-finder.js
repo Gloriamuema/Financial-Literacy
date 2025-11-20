@@ -8,12 +8,36 @@ const aidResources = [
     { zip: '90012', category: 'Housing', name: 'Los Angeles Housing Department', link: 'https://housing.lacity.org/', description: 'Information on affordable housing and tenant rights.' },
 ];
 
+
+// aid-finder.js (Simplified Example)
+
+// ... (inside the form submission handler) ...
 document.getElementById('aid-search-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const zipCode = document.getElementById('aid-zip-code').value.trim();
     const category = document.getElementById('aid-category').value;
-    const resultsContainer = document.getElementById('aid-results');
+    
+    const API_URL = `http://localhost:5000/api/resources?zip=${zipCode}&category=${category}`;
+
+    fetch(API_URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // 'data' is the list of resources returned from the Flask API
+            // Now loop through 'data' and display the resource cards as before
+        })
+        .catch(error => {
+            // Handle errors (e.g., show a message if the API is down)
+            console.error('Fetch error:', error);
+        });
+
+// ...
+    
 
     // Clear previous results
     resultsContainer.innerHTML = '';
