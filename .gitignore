@@ -1,0 +1,14 @@
+# .gitignore file content
+
+# Python bytecode and environment
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Database files
+*.sqlite3
+
+# Flask-specific secrets
+config.py
+secrets.py
