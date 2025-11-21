@@ -1,53 +1,131 @@
-<section id="budget" aria-labelledby="budget-heading">
-    <h2 id="budget-heading">💰 Budgeting 101: Where Does My Money Go?</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Modules - Financial Stability</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Using Inter font for a modern, professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     
-    <h3>Step 1: Know Your Income (The Simple Way)</h3>
-    <p>Write down ALL the money you expect to bring in this month. Don't forget irregular income from side jobs or benefits.</p>
+    <!-- Include Firebase script block for consistency -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    <h3>Step 2: Track Your Needs (The Must-Pay Bills)</h3>
-    <ul>
-        <li>Rent/Mortgage (Housing)</li>
-        <li>Food (Groceries, not takeout)</li>
-        <li>Utilities (Electric, Gas, Water)</li>
-        <li>Transportation (Bus pass, gas)</li>
-        <li>Minimum Debt Payments</li>
-    </ul>
+        // Minimal setup to prevent errors if other scripts check for these globals
+        if (typeof __firebase_config !== 'undefined' && JSON.parse(__firebase_config).apiKey) {
+            const firebaseConfig = JSON.parse(__firebase_config);
+            window.app = initializeApp(firebaseConfig);
+            window.db = getFirestore(window.app);
+            window.auth = getAuth(window.app);
+            window.firebaseTools = { getFirestore, setLogLevel };
+            window.firebaseTools.setLogLevel('Debug');
+            
+            // Minimal authentication for security rule compliance
+            async function authenticate() {
+                const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(window.auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(window.auth);
+                    }
+                } catch (error) {
+                    console.error("Modules page authentication failed:", error);
+                }
+            }
+            authenticate();
+        }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">FINANCE FORWARD</div>
+        <nav class="main-nav" aria-label="Main Navigation">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Learn</a>
+            <a href="tools.html">Tools</a>
+            <a href="taxes.html">Tax Help</a>
+            <a href="about.html">About Us</a>
+        </nav>
+    </header>
 
-    <h3>Step 3: The 50/30/20 Rule (Simplified for Real Life)</h3>
-    <p>A simple guide to help you manage your paycheck:</p>
-    <ul>
-        <li>50%: Needs (Housing, Food, Bills)</li>
-        <li>30%: Wants (Fun money, takeout, non-essential clothing)</li>
-        <li>20%: Savings & Debt Payoff (Your future!)</li>
-    </ul>
-    
-    <a href="tools.html#budget-tool" class="cta-button primary">Calculate Your Budget Now</a>
-</section>
+    <main>
+        <section id="module-overview" aria-labelledby="module-heading">
+            <h2 id="module-heading">Empower Your Future: Learning Modules</h2>
+            <p>Our guided lessons are designed to give you practical, foundational knowledge to build financial security and stability.</p>
 
-<hr>
+            <div class="module-grid">
+                
+                <!-- Income Stability Module (Based on User Request) -->
+                <article class="module-card primary-card">
+                    <h3 class="card-title">💰 Building Income Stability</h3>
+                    <p class="card-summary">Strategies for diversifying income, increasing earning potential, and adapting to economic changes.</p>
+                    
+                    <div class="topic-list">
+                        <h4>Key Topics:</h4>
+                        <div class="topic-item">
+                            <span class="topic-label">Side Hustle</span>
+                            <p>Supporting side hustles enables families to diversify their income, allowing them to adapt to financial uncertainties and enhance their overall economic resilience in challenging times.</p>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-label">Job Skills</span>
+                            <p>Providing workshops focused on essential job skills allows individuals to increase employability, ensuring they can secure stable employment and better navigate the ever-evolving job market.</p>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-label">Additional Insights</span>
+                            <p>Exploring benefits of negotiation, upskilling, and professional networking for long-term career growth.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button primary read-more-button">Start Module</button>
+                </article>
 
-<section id="debt" aria-labelledby="debt-heading">
-    <h2 id="debt-heading">💳 Debt Management: Taking Control</h2>
-    
-    <h3>The Danger Zone: Predatory Loans</h3>
-    <p class="warning">AVOID payday loans and car title loans. They have hidden fees and interest rates that can trap your family in debt.</p>
+                <!-- Budgeting Basics Module -->
+                <article class="module-card secondary-card">
+                    <h3 class="card-title">💵 Foundational Budgeting</h3>
+                    <p class="card-summary">Learn the essentials of tracking spending, setting realistic goals, and mastering the 50/30/20 rule.</p>
+                    <ul class="key-takeaways">
+                        <li>Mastering expense tracking</li>
+                        <li>Creating a zero-based budget</li>
+                        <li>Handling irregular income</li>
+                    </ul>
+                    <button class="cta-button secondary read-more-button">View Lessons</button>
+                </article>
 
-    <h3>Two Simple Ways to Pay Down Debt:</h3>
-    <ol>
-        <li>Debt Snowball: Pay off the smallest debt first. It gives you quick wins and keeps you motivated!</li>
-        <li>Debt Avalanche: Pay off the debt with the highest interest rate first. This saves you the most money in the long run.</li>
-    </ol>
-    
-    <a href="resources.html#counseling" class="cta-button secondary">Find Free Credit Counseling &rarr;</a>
-</section>
+                <!-- Debt Management Module -->
+                <article class="module-card tertiary-card">
+                    <h3 class="card-title">💳 Debt & Credit Health</h3>
+                    <p class="card-summary">Strategies to tackle high-interest debt, understand your credit score, and borrow responsibly.</p>
+                    <ul class="key-takeaways">
+                        <li>Debt snowball vs. avalanche</li>
+                        <li>Improving credit score factors</li>
+                        <li>Avoiding predatory loans</li>
+                    </ul>
+                    <button class="cta-button secondary read-more-button">Explore Strategies</button>
+                </article>
 
-<section id="budget">
-    <h2 id="budget-heading">💰 Budgeting 101</h2>
-    <button onclick="playAudio('budget101-audio.mp3')" class="cta-button secondary small">🔊 Listen to this Section</button>
-    </section>
+                <!-- Savings & Emergency Funds Module -->
+                <article class="module-card quaternary-card">
+                    <h3 class="card-title">🛡️ Saving & Resilience</h3>
+                    <p class="card-summary">Build a robust emergency fund and establish short-term savings goals to weather financial storms.</p>
+                    <ul class="key-takeaways">
+                        <li>The 3-6 month rule</li>
+                        <li>Automating savings</li>
+                        <li>Savings account types</li>
+                    </ul>
+                    <button class="cta-button secondary read-more-button">Plan Savings</button>
+                </article>
 
-    <hr>
-<section id="saving" aria-labelledby="saving-heading">
-    <h2 id="saving-heading">📈 Saving & Wealth: Building a Stronger Future</h2>
-    <a href="tools.html#budget-tool" class="cta-button primary">Plan My Savings Goal &rarr;</a>
-</section>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Finance Forward | Financial Stability Resources</p>
+    </footer>
+</body>
+</html>

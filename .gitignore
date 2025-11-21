@@ -1,5 +1,6 @@
 # .gitignore file content
-
+.csv files
+local_aid_data.csv
 # Python bytecode and environment
 __pycache__/
 *.pyc
