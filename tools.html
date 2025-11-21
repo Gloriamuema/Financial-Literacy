@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Tools - Budgeting & Local Aid</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Using Inter font for a modern, professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="site-header">
-        </header>
+        <div class="logo">FINANCE FORWARD</div>
+        <nav class="main-nav" aria-label="Main Navigation">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Learn</a>
+            <a href="tools.html">Tools</a>
+            <a href="taxes.html">Tax Help</a>
+            <a href="about.html">About Us</a>
+        </nav>
+    </header>
 
     <main>
+        <!-- Standard Budget Calculator -->
         <section id="budget-tool" aria-labelledby="budget-tool-heading">
             <h2 id="budget-tool-heading">Simple Monthly Budget Calculator</h2>
             <p>Figure out what you can save or what you need to adjust using our simple 50/30/20 breakdown.</p>
@@ -42,8 +52,10 @@
                         <input type="number" id="transportation" placeholder="e.g., 100" required min="0">
                     </div>
 
-                    <button type="submit" class="cta-button primary">Calculate My Budget</button>
-                    <button type="reset" class="cta-button secondary">Clear</button>
+                    <div class="button-group">
+                         <button type="submit" class="cta-button primary">Calculate My Budget</button>
+                         <button type="reset" class="cta-button secondary">Clear</button>
+                    </div>
                 </form>
 
                 <div id="results" class="results-box" aria-live="polite" hidden>
@@ -58,7 +70,7 @@
                     </div>
                     <hr>
                     <div class="result-line final-line">
-                        <span>**Remaining for Wants & Savings:**</span>
+                        <span><strong>Remaining for Wants & Savings:</strong></span>
                         <span id="result-remaining" class="value-remaining"></span>
                     </div>
                     
@@ -73,78 +85,92 @@
         </section>
 
         <hr>
-<section id="irregular-income-tool" aria-labelledby="irr-income-heading">
-    <h2 id="irr-income-heading">💸 Irregular Income Tool: Find Your Safe Budget</h2>
-    <p>If your pay changes every month (gig work, tips, seasonal), use this tool to find the lowest safe amount you can budget for.</p>
 
-    <form id="irregular-income-form">
-        <h3>Input Your Last 4 Months of Income (After Taxes)</h3>
-        <div class="input-group">
-            <label for="income-m1">Month 1 Income</label>
-            <input type="number" id="income-m1" placeholder="e.g., 2800" required min="0">
-        </div>
-        <div class="input-group">
-            <label for="income-m2">Month 2 Income</label>
-            <input type="number" id="income-m2" placeholder="e.g., 2100" required min="0">
-        </div>
-        <div class="input-group">
-            <label for="income-m3">Month 3 Income</label>
-            <input type="number" id="income-m3" placeholder="e.g., 2450" required min="0">
-        </div>
-        <div class="input-group">
-            <label for="income-m4">Month 4 Income</label>
-            <input type="number" id="income-m4" placeholder="e.g., 3000" required min="0">
-        </div>
+        <!-- Irregular Income Tool -->
+        <section id="irregular-income-tool" aria-labelledby="irr-income-heading">
+            <h2 id="irr-income-heading">💸 Irregular Income Tool: Find Your Safe Budget</h2>
+            <p>If your pay changes every month (gig work, tips, seasonal), use this tool to find the lowest safe amount you can budget for.</p>
 
-        <button type="submit" class="cta-button primary">Calculate Safe Income</button>
-    </form>
+            <form id="irregular-income-form">
+                <h3>Input Your Last 4 Months of Income (After Taxes)</h3>
+                <div class="input-group">
+                    <label for="income-m1">Month 1 Income</label>
+                    <input type="number" id="income-m1" placeholder="e.g., 2800" required min="0">
+                </div>
+                <div class="input-group">
+                    <label for="income-m2">Month 2 Income</label>
+                    <input type="number" id="income-m2" placeholder="e.g., 2100" required min="0">
+                </div>
+                <div class="input-group">
+                    <label for="income-m3">Month 3 Income</label>
+                    <input type="number" id="income-m3" placeholder="e.g., 2450" required min="0">
+                </div>
+                <div class="input-group">
+                    <label for="income-m4">Month 4 Income</label>
+                    <input type="number" id="income-m4" placeholder="e.g., 3000" required min="0">
+                </div>
 
-    <div id="irr-results" class="results-box" aria-live="polite" hidden>
-        <h3>Your Safe Budget Numbers</h3>
-        <div class="result-line">
-            <span>Average Monthly Income:</span>
-            <span id="result-average" class="value-income"></span>
-        </div>
-        <div class="result-line final-line">
-            <span>**SAFE BASE BUDGET (Lowest Income):**</span>
-            <span id="result-safe-base" class="value-remaining"></span>
-        </div>
-        <div class="advice-box">
-            <p id="advice-irr-plan"></p>
-        </div>
-    </div>
-</section>
+                <button type="submit" class="cta-button primary">Calculate Safe Income</button>
+            </form>
+
+            <div id="irr-results" class="results-box" aria-live="polite" hidden>
+                <h3>Your Safe Budget Numbers</h3>
+                <div class="result-line">
+                    <span>Average Monthly Income:</span>
+                    <span id="result-average" class="value-income"></span>
+                </div>
+                <div class="result-line final-line">
+                    <span><strong>SAFE BASE BUDGET (Lowest Income):</strong></span>
+                    <span id="result-safe-base" class="value-remaining"></span>
+                </div>
+                <div class="advice-box">
+                    <p id="advice-irr-plan"></p>
+                </div>
+            </div>
+        </section>
 
         <hr>
 
+        <!-- Local Aid Finder (Corrected and Responsive) -->
         <section id="aid-finder-tool" aria-labelledby="aid-finder-heading">
             <h2 id="aid-finder-heading">Local Aid & Resources Finder</h2>
             <p>Find programs near you for food, housing, utility help, and job training. Links are to external government or non-profit websites.</p>
 
             <form id="aid-search-form" class="aid-search-form">
-                <label for="aid-zip-code">Enter Your Zip Code (e.g., 77002)</label>
-                <input type="text" id="aid-zip-code" placeholder="Zip Code" required maxlength="5" pattern="\d{5}">
-                <label for="aid-category" class="sr-only">Select Category</label>
-                <select id="aid-category">
-                    <option value="">All Categories</option>
-                    <option value="Food">Food Assistance</option>
-                    <option value="Housing">Housing/Rent</option>
-                    <option value="Utilities">Utilities/Energy</option>
-                    <option value="Employment">Employment/Training</option>
-                </select>
-                <button type="submit" class="cta-button primary">Search Resources</button>
+                <!-- Input Group 1 (ZIP Code) -->
+                <div class="aid-input-group">
+                    <label for="aid-zip-code">Enter Your Zip Code (e.g., 77002)</label>
+                    <input type="text" id="aid-zip-code" placeholder="Zip Code" required maxlength="5" pattern="\d{5}">
+                </div>
+
+                <!-- Input Group 2 (Category) -->
+                <div class="aid-input-group">
+                    <label for="aid-category">Filter by Category</label>
+                    <select id="aid-category">
+                        <option value="">All Categories</option>
+                        <option value="Food">Food Assistance</option>
+                        <option value="Housing">Housing/Rent</option>
+                        <option value="Utilities">Utilities/Energy</option>
+                        <option value="Employment">Employment/Training</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="cta-button primary aid-search-button">Search Resources</button>
             </form>
 
             <div id="aid-results" class="aid-results-list">
-                </div>
+                <!-- Results will be displayed here by aid-finder.js -->
+                <p id="aid-status" class="status-message">Enter your zip code and search to find local aid.</p>
+            </div>
         </section>
-
     </main>
+
     <footer class="site-footer">
-        </footer>
+        <p>&copy; 2025 Finance Forward | Financial Stability Resources</p>
+    </footer>
 
     <script src="calculator.js"></script>
-    <script src="aid-finder.js"></script>
     <script src="irregular-income.js"></script>
+    <script src="aid-finder.js"></script>
 </body>
 </html>

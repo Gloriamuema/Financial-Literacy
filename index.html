@@ -3,72 +3,831 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlock Your Financial Strength - Free Literacy Tools</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Finance Forward</title>
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font and base styling */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f9fafb; /* Light gray background */
+        }
+        
+        /* Ensure the header remains sticky without impacting layout */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+        
+        /* Custom card style for modules */
+        .module-card:hover .module-icon {
+            transform: scale(1.1);
+        }
+
+        /* Budget Tool Specific Styling */
+        .input-group label {
+            font-weight: 600;
+        }
+
+        /* Hide number input arrows (optional, for aesthetics) */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </head>
-<body>
-    <header class="site-header">
-        <div class="logo">FINANCE FORWARD</div>
-        <nav class="main-nav" aria-label="Main Navigation">
-            <a href="modules.html">Learn</a>
-            <a href="tools.html">Tools</a>
-            <a href="#aid-finder">Local Aid</a>
-            <a href="about.html">About Us</a>
-        </nav>
+<body class="min-h-screen flex flex-col">
+
+    <header id="header" class="bg-indigo-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+            <!-- Logo/Brand Button -->
+            <button id="nav-home-btn" class="flex items-center space-x-2 text-xl font-extrabold text-white tracking-wide">
+                <!-- Zap Icon Placeholder -->
+                <div class="h-7 w-7 text-yellow-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <span>FINANCE FORWARD</span>
+            </button>
+
+            <!-- Desktop Navigation -->
+            <nav id="desktop-nav" class="hidden md:flex md:space-x-8 h-full items-center">
+                <!-- Navigation links will be inserted here by JS -->
+            </nav>
+
+            <!-- Mobile Menu Button (Hamburger/X) -->
+            <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded-md text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <!-- Icon will be toggled by JS -->
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden bg-indigo-800 border-t border-indigo-700 hidden">
+            <div id="mobile-nav-links" class="pt-2 pb-3 space-y-1 px-2 sm:px-3">
+                <!-- Mobile navigation links will be inserted here by JS -->
+            </div>
+        </div>
     </header>
 
-    <main>
-        <section class="hero-section" aria-labelledby="main-heading">
-            <h1 id="main-heading">Unlock Your Financial Strength</h1>
-            <p class="tagline">Simple, free, easy-to-understand steps to build stability and confidence for your family.</p>
-            <div class="cta-buttons">
-                <a href="modules.html" class="cta-button primary">Start Learning Today</a>
-                <a href="tools.html" class="cta-button secondary">Try Our Budget Tool</a>
+    <!-- Main Content Area - Event delegation listener will be attached here -->
+    <main id="main-content" class="flex-grow max-w-7xl mx-auto w-full"></main>
+
+    <!-- Custom Modal for Alerts (Replaces window.alert/confirm) -->
+    <div id="custom-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl shadow-2xl p-6 w-11/12 max-w-sm transform transition-all duration-300 scale-100">
+            <h3 id="modal-title" class="text-xl font-bold text-indigo-700 mb-4">Notification</h3>
+            <p id="modal-message" class="text-gray-700 mb-6">Content of the message.</p>
+            <div class="flex justify-end">
+                <button id="modal-close-btn" class="px-5 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500/50">
+                    Close
+                </button>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section class="modules-quick-access">
-            <h2>Start Here: Your 3 Financial Goals</h2>
-            <div class="goal-grid">
-                <div class="goal-card" tabindex="0">
-                    <img src="icon-budget.svg" alt="Budgeting Icon">
-                    <h3>Master Budgeting</h3>
-                    <p>Learn to track income and expenses without stress.</p>
-                    <a href="modules.html#budget" class="link-arrow">Start &rarr;</a>
-                </div>
-                <div class="goal-card" tabindex="0">
-                    <img src="icon-debt.svg" alt="Debt Icon">
-                    <h3>Tackle Debt</h3>
-                    <p>Simple strategies to pay down debt and raise your credit score.</p>
-                    <a href="modules.html#debt" class="link-arrow">Start &rarr;</a>
-                </div>
-                <div class="goal-card" tabindex="0">
-                    <img src="icon-save.svg" alt="Savings Icon">
-                    <h3>Build Savings</h3>
-                    <p>Set up an emergency fund and start saving for the future.</p>
-                    <a href="modules.html#saving" class="link-arrow">Start &rarr;</a>
-                </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
+            <p class="text-sm mb-2 font-semibold">&copy; 2025 Finance Forward | Financial Stability Resources</p>
+            <p class="text-xs text-gray-400 mb-3">Free, Unbiased, and Confidential Resources.</p>
+            <div class="text-xs text-gray-500 space-x-4">
+                <button onclick="showCustomModal('Privacy Policy', 'This is a placeholder for the Privacy Policy. We respect your data.');" class="hover:text-white transition-colors">Privacy Policy</button>
+                <span>|</span>
+                <button onclick="showCustomModal('Contact Us', 'If you need help, please email support@financeforward.org.');" class="hover:text-white transition-colors">Contact Us</button>
             </div>
-        </section>
-
-        <section id="aid-finder" class="aid-section">
-            <h2>Need Immediate Help?</h2>
-            <p>Find nearby resources for food, rent, utilities and healthcare. We connect you directly to local programs.</p>
-            <form action="tools.html" class="aid-search-form">
-                <label for="zip-code" class="sr-only">Enter your Zip Code</label>
-                <input type="text" id="zip-code" name="zip-code" placeholder="Enter Your Zip Code">
-                <button type="submit" class="cta-button primary">Find Aid</button>
-            </form>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <p>&copy; 2025 Finance Forward | Free, Unbiased and Confidential Resources.</p>
-        <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="contact.html">Contact Us</a>
+            <!-- App ID Display -->
+            <p id="app-id-display" class="mt-3 text-xs text-gray-600"></p>
         </div>
     </footer>
+
+    <script type="module">
+        // =================================================================================================
+        // PURE VANILLA JAVASCRIPT LOGIC (NO REACT, NO FRAMEWORKS)
+        // This script handles all page rendering and navigation using standard DOM manipulation.
+        // =================================================================================================
+
+        // Global variable provided by the environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'; 
+        document.getElementById('app-id-display').textContent = `App ID: ${appId}`;
+
+        let currentPage = 'Home';
+        let isMobileMenuOpen = false;
+
+        const mainContent = document.getElementById('main-content');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+
+        // --- Custom Modal/Message Box Logic (Replaces alert/confirm) ---
+        const customModal = document.getElementById('custom-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        /**
+         * Shows the custom modal with a title and message.
+         * @param {string} title - The title of the modal.
+         * @param {string} message - The content message.
+         */
+        window.showCustomModal = (title, message) => {
+            modalTitle.textContent = title;
+            modalMessage.innerHTML = message;
+            customModal.classList.remove('hidden');
+        };
+
+        // Attach close event listener to the custom modal button
+        modalCloseBtn.onclick = () => {
+            customModal.classList.add('hidden');
+        };
+
+
+        // --- Icon Definitions (SVG Paths) ---
+        // Using Lucide icons for high-quality, lightweight SVGs
+        const icons = {
+            Zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+            Wallet: '<path d="M17 14h.01"/><path d="M17 6H3a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z"/><path d="M21 12h-1"/><path d="M21 6v8a2 2 0 0 1-2 2h-1"/>',
+            CreditCard: '<rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/><line x1="10" y1="15" x2="14" y2="15"/>',
+            PiggyBank: '<path d="M19 5c-1.5 0-2.8.7-3.8 1.8l-1.5 2.1"/><path d="M21 17V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"/><path d="M17 19H4a2 2 0 0 1-2-2v-1"/><path d="M20 17v-1.5a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v1.5"/><path d="M16 8h.01"/><path d="M19 19V7a2 2 0 0 1 2-2h1"/><path d="M19 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>',
+            Search: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+            Home: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+            BookOpen: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+            Wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.71-3.71a1 1 0 0 0 0-1.4L18.42 2.59a1 1 0 0 0-1.41 0z"/><path d="M21 21l-3.2-3.2"/><path d="M13.5 10.5 4.5 19.5"/>',
+            FileText: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>',
+            Info: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>',
+            Users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+            BookOpenCheck: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/><path d="m14 11 2 2 4-4"/>',
+            ClipboardList: '<rect x="9" y="4" width="6" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M8 18h8"/>',
+            ZapOff: '<path d="M12.41 6.13 10 2 3 14h9l-1.55 8"/><line x1="2" y1="2" x2="22" y2="22"/>',
+            Menu: '<line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>',
+            X: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+            Scale: '<path d="m16 16.5 3.5-2c.5-.3.8-.8.8-1.4V6.2c0-.6-.3-1.1-.8-1.4L16 2.5"/><path d="m16 16.5 3.5-2c.5-.3.8-.8.8-1.4V6.2c0-.6-.3-1.1-.8-1.4L16 2.5"/><path d="M8 8c0 1.5-1 2-1 2L2 19h3.6a2 2 0 0 0 1.95-1.5"/><path d="M12 2L9.6 4.6c-.4.4-.6 1-.6 1.6V19a2 2 0 0 0 2 2h4"/>',
+            Shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+            Receipt: '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2c-2 0-2 2-4 2s-2-2-4-2s-2 2-4 2s-2-2-4-2z"/>',
+            RefreshCw: '<path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.7 2.87M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.7-2.87"/><path d="M3 3v5h5M21 21v-5h-5"/>'
+        };
+
+        /**
+         * Generates an SVG icon element as an HTML string.
+         * @param {string} name - The icon name.
+         * @param {string} classes - Tailwind CSS classes for the container div.
+         */
+        const getIconSvg = (name, classes = 'h-6 w-6') => {
+            const path = icons[name] || '';
+            return `
+                <div class="inline-block ${classes}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                        ${path}
+                    </svg>
+                </div>
+            `;
+        };
+
+        // Navigation configuration
+        const navItems = [
+            { name: 'Home', icon: 'Home' },
+            { name: 'Learn', icon: 'BookOpen' }, 
+            { name: 'Tools', icon: 'Wrench' }, 
+            { name: 'Tax Help', icon: 'FileText' }, 
+            { name: 'About Us', icon: 'Info' }, 
+        ];
+
+        // --- Budget Tool Implementation ---
+        
+        /**
+         * Renders the interactive Budget Tool page.
+         */
+        const renderBudgetToolPage = () => {
+            // Helper function for input fields
+            const inputField = (id, label, placeholder) => `
+                <div class="input-group mb-4">
+                    <label for="${id}" class="block text-gray-700 mb-1">${label}</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-bold">$</span>
+                        <input type="number" id="${id}" min="0" value="0" placeholder="${placeholder}" 
+                               class="budget-input w-full p-3 pl-8 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" 
+                               oninput="calculateBudget()">
+                    </div>
+                </div>
+            `;
+
+            const budgetSections = [
+                { title: 'Income (Monthly)', id: 'income', fields: [
+                    { id: 'monthly-salary', label: 'Net Monthly Salary', placeholder: '2500' },
+                    { id: 'other-income', label: 'Other Income/Side Gigs', placeholder: '500' }
+                ]},
+                { title: 'Fixed Expenses (Non-Negotiable)', id: 'fixed-expenses', fields: [
+                    { id: 'rent-mortgage', label: 'Rent/Mortgage', placeholder: '1000' },
+                    { id: 'loan-payments', label: 'Debt/Loan Payments', placeholder: '400' },
+                    { id: 'insurance', label: 'Insurance (Health, Car)', placeholder: '200' },
+                    { id: 'utilities', label: 'Utilities (Fixed part)', placeholder: '150' }
+                ]},
+                { title: 'Variable Expenses (Flexible)', id: 'variable-expenses', fields: [
+                    { id: 'groceries', label: 'Groceries/Food', placeholder: '500' },
+                    { id: 'transport', label: 'Transportation/Gas', placeholder: '150' },
+                    { id: 'personal-care', label: 'Personal Care/Shopping', placeholder: '100' },
+                    { id: 'entertainment', label: 'Entertainment/Fun', placeholder: '100' }
+                ]},
+                { title: 'Savings & Goals (Your Investment)', id: 'savings', fields: [
+                    { id: 'emergency-fund', label: 'Emergency Fund', placeholder: '100' },
+                    { id: 'retirement', label: 'Retirement/Investment', placeholder: '50' },
+                ]}
+            ];
+
+            return `
+                <div class="p-4 sm:p-8 space-y-8">
+                    <!-- Header -->
+                    <section class="text-center">
+                        <button data-nav-to="Tools" class="nav-link text-indigo-600 hover:text-indigo-800 flex items-center mb-4 transition-colors">
+                            ${getIconSvg('ZapOff', 'h-4 w-4 mr-1 transform rotate-180')}
+                            Back to All Tools
+                        </button>
+                        <h1 class="text-4xl font-extrabold text-indigo-700 mb-2">Monthly Budget Planner</h1>
+                        <p class="text-lg text-gray-500 max-w-3xl mx-auto">Track your income and expenses to ensure every dollar has a job (Zero-Based Budgeting).</p>
+                    </section>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        
+                        <!-- Input Section (2/3 width on large screens) -->
+                        <div class="lg:col-span-2 space-y-8">
+                            ${budgetSections.map(section => `
+                                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-indigo-500">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-4">${section.title}</h2>
+                                    <div class="grid sm:grid-cols-2 gap-4">
+                                        ${section.fields.map(field => inputField(field.id, field.label, field.placeholder)).join('')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <!-- Summary Section (1/3 width on large screens) -->
+                        <div class="lg:col-span-1">
+                            <div class="sticky top-20 bg-indigo-50 p-6 rounded-xl shadow-2xl border-2 border-indigo-400">
+                                <h2 class="text-2xl font-bold text-indigo-800 mb-4 flex items-center">
+                                    ${getIconSvg('Wallet', 'h-6 w-6 mr-2 text-indigo-600')}
+                                    Summary
+                                </h2>
+
+                                <div class="space-y-4 mb-6 text-lg">
+                                    <div class="flex justify-between items-center text-green-700 font-semibold border-b pb-2">
+                                        <span>Total Income:</span>
+                                        <span id="total-income-display">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-red-700 font-semibold border-b pb-2">
+                                        <span>Total Expenses:</span>
+                                        <span id="total-expenses-display">-$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-gray-700 font-semibold border-b pb-2">
+                                        <span>Total Savings Goal:</span>
+                                        <span id="total-savings-display">-$0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-lg text-center shadow-inner" id="remaining-container">
+                                    <p class="text-2xl font-extrabold mb-1 text-gray-800">Remaining Budget:</p>
+                                    <p class="text-4xl font-extrabold" id="remaining-budget-display">$0.00</p>
+                                    <p class="text-sm font-medium mt-2" id="budget-status-text">Enter your numbers above.</p>
+                                </div>
+                                
+                                <button onclick="resetBudget()" class="w-full mt-6 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors flex items-center justify-center">
+                                    ${getIconSvg('RefreshCw', 'h-5 w-5 mr-2')}
+                                    Reset All Inputs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        };
+        
+        /**
+         * Core calculation logic for the budget tool.
+         */
+        window.calculateBudget = () => {
+            const inputs = document.querySelectorAll('.budget-input');
+            let totalIncome = 0;
+            let totalFixedExpenses = 0;
+            let totalVariableExpenses = 0;
+            let totalSavings = 0;
+
+            inputs.forEach(input => {
+                const value = parseFloat(input.value) || 0;
+                const id = input.id;
+                
+                // Income
+                if (id === 'monthly-salary' || id === 'other-income') {
+                    totalIncome += value;
+                } 
+                // Fixed Expenses
+                else if (['rent-mortgage', 'loan-payments', 'insurance', 'utilities'].includes(id)) {
+                    totalFixedExpenses += value;
+                }
+                // Variable Expenses
+                else if (['groceries', 'transport', 'personal-care', 'entertainment'].includes(id)) {
+                    totalVariableExpenses += value;
+                }
+                // Savings
+                else if (['emergency-fund', 'retirement'].includes(id)) {
+                    totalSavings += value;
+                }
+            });
+
+            const totalExpensesAndSavings = totalFixedExpenses + totalVariableExpenses + totalSavings;
+            const remaining = totalIncome - totalExpensesAndSavings;
+
+            // Update displays
+            const incomeDisplay = document.getElementById('total-income-display');
+            const expensesDisplay = document.getElementById('total-expenses-display');
+            const savingsDisplay = document.getElementById('total-savings-display');
+            const remainingDisplay = document.getElementById('remaining-budget-display');
+            const statusText = document.getElementById('budget-status-text');
+            const remainingContainer = document.getElementById('remaining-container');
+
+            if (incomeDisplay) incomeDisplay.textContent = `$${totalIncome.toFixed(2)}`;
+            if (expensesDisplay) expensesDisplay.textContent = `-$${(totalFixedExpenses + totalVariableExpenses).toFixed(2)}`;
+            if (savingsDisplay) savingsDisplay.textContent = `-$${totalSavings.toFixed(2)}`;
+            if (remainingDisplay) remainingDisplay.textContent = `$${remaining.toFixed(2)}`;
+
+            // Update status and color
+            if (remainingContainer) {
+                remainingContainer.classList.remove('bg-red-100', 'bg-green-100', 'bg-yellow-100');
+                remainingContainer.classList.add('transition-colors');
+
+                if (remaining > 0) {
+                    remainingContainer.classList.add('bg-green-100');
+                    if (statusText) statusText.textContent = "You have funds left over! Put this towards savings or debt.";
+                } else if (remaining < 0) {
+                    remainingContainer.classList.add('bg-red-100');
+                    if (statusText) statusText.textContent = "You are over budget! Adjust expenses immediately.";
+                } else {
+                    remainingContainer.classList.add('bg-yellow-100');
+                    if (statusText) statusText.textContent = "Perfect Zero-Based Budget! Every dollar has a job.";
+                }
+            }
+        };
+
+        /**
+         * Resets all budget input fields.
+         */
+        window.resetBudget = () => {
+            const inputs = document.querySelectorAll('.budget-input');
+            inputs.forEach(input => {
+                input.value = '0';
+            });
+            calculateBudget(); // Recalculate and update display
+        };
+
+
+        // ====================================================================
+        // --- View Rendering Functions (Other pages remain the same) ---
+        // ====================================================================
+
+        /**
+         * Generates the HTML for a Goal Card (Used on Home page).
+         */
+        const GoalCard = (title, description, iconName, color) => {
+            const colorMap = {
+                teal: { border: 'border-teal-500', text: 'text-teal-600', bg: 'bg-teal-100', ring: 'ring-teal-500/30', hoverBorder: 'hover:border-teal-800', hoverBg: 'hover:bg-teal-200' },
+                red: { border: 'border-red-500', text: 'text-red-600', bg: 'bg-red-100', ring: 'ring-red-500/30', hoverBorder: 'hover:border-red-800', hoverBg: 'hover:bg-red-200' },
+                green: { border: 'border-green-500', text: 'text-green-600', bg: 'bg-green-100', ring: 'ring-green-500/30', hoverBorder: 'hover:border-green-800', hoverBg: 'hover:bg-green-200' },
+            };
+            const c = colorMap[color];
+            const classes = `${c.border} ${c.text} ${c.bg} ${c.ring} ${c.hoverBorder} ${c.hoverBg}`;
+            const iconSvg = getIconSvg(iconName, 'h-6 w-6');
+
+            return `
+                <button data-nav-to="Learn" class="nav-link flex flex-col items-center p-6 border-2 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.03] ${classes} text-center focus:outline-none focus:ring-4 focus:ring-yellow-400/50">
+                    <!-- Icon Circle -->
+                    <div class="p-3 rounded-full mb-3 ring-4 ${classes.split(' ').slice(0, 3).join(' ')} module-icon transition duration-300">${iconSvg}</div>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">${title}</h3>
+                    <p class="text-sm text-gray-700 mb-4">${description}</p>
+                    
+                    <!-- Action Link -->
+                    <span class="text-sm font-semibold mt-auto ${c.text}">Start &rarr;</span>
+                </button>
+            `;
+        };
+
+        /**
+         * Generates the HTML for the Home Page.
+         */
+        const renderHomePage = () => {
+            const searchIcon = getIconSvg('Search', 'h-6 w-6 mr-2 text-yellow-500');
+
+            return `
+                <div class="space-y-12 p-4 sm:p-8">
+                    <!-- Hero Section -->
+                    <section class="bg-indigo-700 text-white rounded-xl shadow-xl p-8 sm:p-12 text-center">
+                        <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Unlock Your Financial Strength</h1>
+                        <p class="text-indigo-200 text-lg mb-8 max-w-2xl mx-auto">Simple, free, easy-to-understand steps to build stability and confidence for your family.</p>
+                        <div class="flex justify-center space-x-4 flex-wrap gap-4">
+                            <button data-nav-to="Learn" class="nav-link px-6 py-3 bg-yellow-400 text-indigo-900 font-bold rounded-full shadow-lg hover:bg-yellow-300 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-400/50">Start Learning Today</button>
+                            <button data-nav-to="Budget Tool" class="nav-link px-6 py-3 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg hover:bg-white hover:text-indigo-700 transition-colors transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50">Try Our Budget Tool</button>
+                        </div>
+                    </section>
+
+                    <!-- Goals Section -->
+                    <section>
+                        <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">Start Here: Your 3 Financial Goals</h2>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            ${GoalCard("Budgeting Mastery", "Take control of your cash flow and build a sustainable monthly plan.", "Wallet", "teal")}
+                            ${GoalCard("Debt Freedom", "Strategies to manage, reduce, and eliminate high-interest debt quickly.", "CreditCard", "red")}
+                            ${GoalCard("Building Savings", "Establish an emergency fund and start planning for long-term wealth.", "PiggyBank", "green")}
+                        </div>
+                    </section>
+
+                    <!-- Local Aid Section -->
+                    <section class="bg-white p-8 rounded-xl shadow-xl border-t-4 border-yellow-400">
+                        <h2 class="text-2xl font-bold text-gray-800 flex items-center mb-4">
+                            ${searchIcon}
+                            Need Immediate Help?
+                        </h2>
+                        <p class="text-gray-600 mb-6">Find nearby resources for food, rent, utilities, and healthcare. We connect you directly to local programs.</p>
+                        <div class="flex space-x-3 max-w-md">
+                            <input type="text" placeholder="Enter your Zip Code (e.g., 90210)" class="flex-grow p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+                            <button onclick="showCustomModal('Zip Code Search', 'This feature is currently under development. Please check back soon!')" class="px-5 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500/50">Find Aid</button>
+                        </div>
+                    </section>
+                </div>
+            `;
+        };
+
+        /**
+         * Generates the HTML for the Learn Page.
+         */
+        const renderLearnPage = () => {
+            const modules = [
+                { title: 'Module 1: Creating a Zero-Based Budget', description: 'Master the envelope system and track every dollar.', icon: 'Wallet', color: 'bg-teal-500/10 text-teal-600 border-teal-500' },
+                { title: 'Module 2: The Snowball Method', description: 'A powerful strategy for fast debt reduction.', icon: 'CreditCard', color: 'bg-red-500/10 text-red-600 border-red-500' },
+                { title: 'Module 3: Emergency Fund Foundations', description: 'How much to save and where to keep your safety net.', icon: 'PiggyBank', color: 'bg-green-500/10 text-green-600 border-green-500' },
+                { title: 'Module 4: Understanding Credit Scores', description: 'What factors affect your score and how to improve it.', icon: 'Scale', color: 'bg-indigo-500/10 text-indigo-600 border-indigo-500' },
+            ];
+
+            const ModuleCard = (module) => `
+                <div class="module-card p-6 bg-white rounded-xl shadow-lg border-l-4 ${module.color} transition duration-300 transform hover:shadow-xl hover:scale-[1.02]">
+                    <div class="flex items-start">
+                        <div class="p-3 rounded-full ${module.color.replace('border-', 'ring-4 ring-offset-2 ring-')} module-icon transition duration-300 mr-4">
+                            ${getIconSvg(module.icon, 'h-6 w-6')}
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">${module.title}</h3>
+                            <p class="text-gray-600 mb-4">${module.description}</p>
+                        </div>
+                    </div>
+                    <button onclick="showCustomModal('Module Launch', 'Launching module: ${module.title}. This content is coming soon!')" class="w-full mt-4 py-2 text-sm font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">Start Lesson &rarr;</button>
+                </div>
+            `;
+
+            return `
+                <div class="p-4 sm:p-8 space-y-10">
+                    <section class="text-center">
+                        <h1 class="text-4xl font-extrabold text-indigo-700 mb-3">Financial Education Modules</h1>
+                        <p class="text-lg text-gray-500 max-w-3xl mx-auto">Explore our guided lessons, designed to be simple, interactive, and actionable for real-world results.</p>
+                    </section>
+
+                    <section class="grid md:grid-cols-2 gap-8">
+                        ${modules.map(ModuleCard).join('')}
+                    </section>
+                    
+                    <section class="bg-yellow-50 p-8 rounded-xl shadow-inner border border-yellow-200">
+                        <h2 class="text-2xl font-bold text-yellow-800 mb-3">Next Steps: Debt & Credit Counseling</h2>
+                        <p class="text-gray-700 mb-4">If you are facing significant financial stress, contact a certified non-profit credit counselor. They can offer personalized debt management plans.</p>
+                        <button onclick="showCustomModal('Counselor Search', 'Placeholder: Feature to find a local counselor coming soon!')" class="px-6 py-3 bg-yellow-500 text-indigo-900 font-bold rounded-full shadow-lg hover:bg-yellow-400 transition-colors">Find a Counselor</button>
+                    </section>
+                </div>
+            `;
+        };
+        
+        /**
+         * Generates the HTML for the Tools Page (Tools Overview).
+         */
+        const renderToolsPage = () => {
+            const tools = [
+                { name: 'Budget Tool', title: 'Simple Monthly Budgeter', description: 'Track income, expenses, and savings goals in a single view.', icon: 'Wallet', color: 'bg-green-500/10 text-green-600 border-green-500' },
+                { name: 'Debt Calculator', title: 'Debt Repayment Calculator', description: 'Visualize how quickly you can become debt-free using different strategies.', icon: 'CreditCard', color: 'bg-red-500/10 text-red-600 border-red-500' },
+                { name: 'Savings Tracker', title: 'Savings Goal Tracker', description: 'Set goals for your emergency fund, down payment, or future large purchases.', icon: 'PiggyBank', color: 'bg-teal-500/10 text-teal-600 border-teal-500' },
+                { name: 'Net Worth', title: 'Net Worth Estimator', description: 'Calculate your total assets minus liabilities to see your financial health snapshot.', icon: 'Scale', color: 'bg-blue-500/10 text-blue-600 border-blue-500' },
+            ];
+
+            const ToolCard = (tool) => {
+                const action = tool.name === 'Budget Tool' 
+                    ? `data-nav-to="Budget Tool"`
+                    : `onclick="showCustomModal('Tool Not Ready', 'The <strong>${tool.title}</strong> is currently in development and will be available soon!')"`;
+                
+                return `
+                    <button ${action} class="${tool.name === 'Budget Tool' ? 'nav-link' : ''} module-card p-6 bg-white rounded-xl shadow-lg border-t-4 ${tool.color} transition duration-300 transform hover:shadow-xl hover:scale-[1.02] cursor-pointer">
+                        <div class="flex items-center space-x-4 mb-3">
+                            <div class="p-3 rounded-full ${tool.color.replace('border-', 'ring-4 ring-offset-2 ring-')} module-icon transition duration-300">
+                                ${getIconSvg(tool.icon, 'h-7 w-7')}
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">${tool.title}</h3>
+                        </div>
+                        <p class="text-gray-600 text-base">${tool.description}</p>
+                        <span class="inline-block mt-4 text-sm font-semibold ${tool.color.split(' ').find(cls => cls.startsWith('text-'))}">Launch Tool &rarr;</span>
+                    </button>
+                `;
+            };
+
+            return `
+                <div class="p-4 sm:p-8 space-y-10">
+                    <section class="text-center">
+                        <h1 class="text-4xl font-extrabold text-indigo-700 mb-3">Financial Planning Tools</h1>
+                        <p class="text-lg text-gray-500 max-w-3xl mx-auto">Interactive calculators and trackers to help you manage your money, predict outcomes, and stay on track. **(The Budgeter is now fully functional!)**</p>
+                    </section>
+
+                    <section class="grid md:grid-cols-2 gap-8">
+                        ${tools.map(ToolCard).join('')}
+                    </section>
+
+                    <section class="bg-indigo-50 p-8 rounded-xl shadow-inner border border-indigo-200">
+                        <h2 class="text-2xl font-bold text-indigo-800 mb-3">Why Use Financial Tools?</h2>
+                        <p class="text-gray-700">Visualizing your finances removes guesswork and provides clarity. Our tools help you quickly see the impact of your spending habits and saving decisions, turning complex math into simple insights.</p>
+                        <button data-nav-to="Learn" class="nav-link mt-4 px-6 py-3 bg-indigo-600 text-white font-bold rounded-full shadow-lg hover:bg-indigo-700 transition-colors">Learn the Fundamentals First</button>
+                    </section>
+                </div>
+            `;
+        };
+
+        /**
+         * Generates the HTML for the Tax Help Page.
+         */
+        const renderTaxHelpPage = () => {
+            const taxResources = [
+                { title: 'VITA/TCE Locator', description: 'Find free, IRS-certified tax preparation assistance in your area.', icon: 'Search', color: 'bg-yellow-500/10 text-yellow-600 border-yellow-500' },
+                { title: 'Tax Credit Guide', description: 'A simplified guide to common tax credits like EITC and Child Tax Credit.', icon: 'Shield', color: 'bg-orange-500/10 text-orange-600 border-orange-500' },
+                { title: 'Organizing Documents', description: 'A checklist of documents needed for filing and record-keeping.', icon: 'Receipt', color: 'bg-gray-500/10 text-gray-600 border-gray-500' },
+            ];
+
+            const ResourceCard = (resource) => `
+                <div class="p-6 bg-white rounded-xl shadow-lg border-l-4 ${resource.color} transition duration-300 transform hover:shadow-xl hover:scale-[1.02]">
+                    <div class="flex items-start space-x-4 mb-3">
+                        <div class="p-3 rounded-full ${resource.color.replace('border-', 'ring-4 ring-offset-2 ring-')}">
+                            ${getIconSvg(resource.icon, 'h-6 w-6')}
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">${resource.title}</h3>
+                            <p class="text-gray-600 text-base">${resource.description}</p>
+                        </div>
+                    </div>
+                    <button onclick="showCustomModal('Resource Access', 'Accessing resource: ${resource.title}. Content is being prepared!')" class="w-full mt-4 py-2 text-sm font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">Access Resource</button>
+                </div>
+            `;
+
+            return `
+                <div class="p-4 sm:p-8 space-y-10">
+                    <section class="text-center">
+                        <h1 class="text-4xl font-extrabold text-indigo-700 mb-3">Free Tax Filing and Support</h1>
+                        <p class="text-lg text-gray-500 max-w-3xl mx-auto">Connect with trusted, free resources to file your taxes accurately and claim the credits you deserve.</p>
+                    </section>
+
+                    <section class="grid md:grid-cols-3 gap-8">
+                        ${taxResources.map(ResourceCard).join('')}
+                    </section>
+
+                    <section class="bg-red-50 p-8 rounded-xl shadow-inner border border-red-200 text-center">
+                        <h2 class="text-2xl font-bold text-red-800 mb-3">Avoid Scams</h2>
+                        <p class="text-gray-700">Be wary of services that charge high fees for simple returns or guarantee large, immediate refunds. Use VITA/TCE for free, certified help.</p>
+                        <button data-nav-to="About Us" class="nav-link mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition-colors">Read Our Safety Guide</button>
+                    </section>
+                </div>
+            `;
+        };
+
+
+        /**
+         * Generates the HTML for the About Us Page (Features content).
+         */
+        const renderAboutUsPage = () => {
+            const features = [
+                {
+                    icon: 'BookOpenCheck', 
+                    title: 'Jargon-Free',
+                    description: 'We provide clear, straightforward financial resources that eliminate confusing terminology, empowering families to understand their financial situations and make informed decisions with confidence.',
+                    color: 'blue',
+                },
+                {
+                    icon: 'Home',
+                    title: 'Community Workshops',
+                    description: 'Local workshops foster a supportive environment where families can learn essential financial skills, share experiences, and gain practical advice from financial educators and community leaders.',
+                    color: 'green',
+                },
+                {
+                    icon: 'ClipboardList', 
+                    title: 'Online Modules',
+                    description: 'Flexible online learning modules allow families to access financial education at their convenience, covering critical topics such as budgeting, saving, and debt management through engaging content.',
+                    color: 'yellow',
+                },
+                {
+                    icon: 'Users', 
+                    title: 'Peer Support',
+                    description: 'Connecting families with peer support groups encourages shared learning and accountability, allowing participants to motivate each other and build a network of individuals focused on financial improvement.',
+                    color: 'red',
+                },
+            ];
+            
+            // Utility function for colored feature cards
+            const FeatureCard = (feature) => {
+                const colors = {
+                    blue: 'text-blue-600 bg-blue-100 border-blue-500',
+                    green: 'text-green-600 bg-green-100 border-green-500',
+                    yellow: 'text-yellow-600 bg-yellow-100 border-yellow-500',
+                    red: 'text-red-600 bg-red-100 border-red-500',
+                };
+                const colorClasses = colors[feature.color] || 'text-gray-600 bg-gray-100 border-gray-500';
+
+                return `
+                    <div class="p-6 bg-white rounded-xl shadow-md border-t-4 ${colorClasses} transform transition duration-300 hover:shadow-lg">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 rounded-full ${colorClasses.split(' ').slice(0, 3).join(' ')}">
+                                ${getIconSvg(feature.icon, 'h-6 w-6')}
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">${feature.title}</h3>
+                        </div>
+                        <p class="text-gray-600 text-base">${feature.description}</p>
+                    </div>
+                `;
+            };
+
+            return `
+                <div class="p-4 sm:p-8 space-y-12">
+                    <section class="text-center">
+                        <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-700 mb-3">Accessible Financial Education</h1>
+                        <p class="text-lg text-gray-500 max-w-3xl mx-auto">Our mission is to provide foundational knowledge and community support necessary for every family to achieve financial stability and growth.</p>
+                    </section>
+
+                    <section>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                            ${features.map(FeatureCard).join('')}
+                        </div>
+                    </section>
+
+                    <!-- Additional Information Section -->
+                    <section class="bg-indigo-50 p-8 rounded-xl shadow-inner border border-indigo-200">
+                        <h2 class="text-2xl font-bold text-indigo-800 mb-3">Our Commitment to You</h2>
+                        <p class="text-gray-700">
+                            We are committed to continuous improvement of our resources based on community feedback and the latest financial research. 
+                            Our platform is completely free, relying on grants and volunteer educators to ensure unbiased advice. 
+                            If you are interested in partnership or supporting our mission, please check our contact information in the footer.
+                        </p>
+                    </section>
+                </div>
+            `;
+        };
+
+
+        /**
+         * Renders the current page content into the main content area.
+         */
+        const renderCurrentPage = () => {
+            let htmlContent = '';
+
+            // Use specific render functions for unique pages
+            switch (currentPage) {
+                case 'Home':
+                    htmlContent = renderHomePage();
+                    break;
+                case 'Learn':
+                    htmlContent = renderLearnPage();
+                    break;
+                case 'Tools':
+                    htmlContent = renderToolsPage();
+                    break;
+                case 'Budget Tool':
+                    htmlContent = renderBudgetToolPage();
+                    break;
+                case 'Tax Help':
+                    htmlContent = renderTaxHelpPage();
+                    break;
+                case 'About Us':
+                    htmlContent = renderAboutUsPage(); 
+                    break;
+                default:
+                    // Fallback to Home page if an unknown page is requested
+                    currentPage = 'Home';
+                    htmlContent = renderHomePage(); 
+            }
+
+            mainContent.innerHTML = htmlContent;
+        };
+
+        /**
+         * Updates the navigation links to reflect the current active page.
+         */
+        const updateNavLinks = () => {
+            // Determine the active link for the top navbar. 
+            // The Budget Tool is a sub-page of Tools, so both should highlight 'Tools'.
+            const activePage = (currentPage === 'Budget Tool') ? 'Tools' : currentPage;
+
+            // Update desktop nav
+            const desktopNav = document.getElementById('desktop-nav');
+            desktopNav.innerHTML = navItems.map(item => {
+                const isActive = item.name === activePage;
+                const classes = isActive 
+                    ? 'text-yellow-300 border-yellow-300' 
+                    : 'text-white hover:text-indigo-200 transition duration-150 font-medium pb-1 border-b-2 border-transparent hover:border-yellow-300';
+                
+                return `
+                    <button data-nav-to="${item.name}" class="nav-link text-sm font-medium ${classes}">
+                        ${item.name}
+                    </button>
+                `;
+            }).join('');
+
+            // Update mobile nav
+            const mobileNav = document.getElementById('mobile-nav-links');
+            mobileNav.innerHTML = navItems.map(item => {
+                const isActive = item.name === activePage;
+                const classes = isActive 
+                    ? 'bg-indigo-700 text-white' 
+                    : 'text-indigo-200 hover:bg-indigo-700 hover:text-white';
+                const iconSvg = getIconSvg(item.icon, 'h-5 w-5 mr-3');
+                
+                return `
+                    <button data-nav-to="${item.name}" class="nav-link flex items-center text-sm font-medium rounded-lg transition-all duration-200 w-full p-3 ${classes}">
+                        ${iconSvg}
+                        ${item.name}
+                    </button>
+                `;
+            }).join('');
+        };
+
+        /**
+         * Handles navigation logic and state change.
+         */
+        const handleNavClick = (pageName) => {
+            currentPage = pageName;
+            
+            // Close mobile menu if open
+            if (isMobileMenuOpen) {
+                isMobileMenuOpen = false;
+                mobileMenu.classList.add('hidden');
+                mobileToggle.innerHTML = getIconSvg('Menu', 'h-6 w-6');
+            }
+            
+            // Re-render
+            updateNavLinks();
+            renderCurrentPage();
+
+            // Special instruction: If the Budget Tool page is loaded, trigger the initial calculation.
+            if (pageName === 'Budget Tool') {
+                // Wait for the DOM to update before running calculateBudget
+                setTimeout(calculateBudget, 0); 
+            }
+        };
+
+        /**
+         * Initializes all event listeners and the app state.
+         */
+        const initializeApp = () => {
+            // Initial render
+            updateNavLinks();
+            renderCurrentPage();
+
+            // Setup main logo click
+            document.getElementById('nav-home-btn').onclick = () => handleNavClick('Home');
+
+            // Setup mobile menu toggle
+            mobileToggle.innerHTML = getIconSvg('Menu', 'h-6 w-6');
+            mobileToggle.onclick = () => {
+                isMobileMenuOpen = !isMobileMenuOpen;
+                mobileMenu.classList.toggle('hidden', !isMobileMenuOpen);
+                mobileToggle.innerHTML = isMobileMenuOpen 
+                    ? getIconSvg('X', 'h-6 w-6') 
+                    : getIconSvg('Menu', 'h-6 w-6');
+            };
+            
+            // *** Event Delegation for Navigation Links ***
+            document.body.addEventListener('click', (e) => {
+                let target = e.target;
+                
+                // Traverse up the DOM tree to find the closest element with the 'data-nav-to' attribute
+                while (target && !target.hasAttribute('data-nav-to')) {
+                    if (target === document.body) {
+                        target = null;
+                        break;
+                    }
+                    target = target.parentNode;
+                }
+
+                if (target && target.hasAttribute('data-nav-to')) {
+                    const page = target.getAttribute('data-nav-to');
+                    handleNavClick(page);
+                }
+            });
+        };
+
+        // Start the application when the window loads
+        window.onload = initializeApp;
+
+    </script>
 </body>
 </html>

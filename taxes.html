@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Help - Filing Guide & Resources</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- Include Firebase script block from tools.html for consistency, though not strictly needed here -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Minimal setup to prevent errors if other scripts check for these globals
+        if (typeof __firebase_config !== 'undefined' && JSON.parse(__firebase_config).apiKey) {
+            const firebaseConfig = JSON.parse(__firebase_config);
+            window.app = initializeApp(firebaseConfig);
+            window.db = getFirestore(window.app);
+            window.auth = getAuth(window.app);
+            window.firebaseTools = { getFirestore, setLogLevel };
+            window.firebaseTools.setLogLevel('Debug');
+            
+            // Minimal authentication for security rule compliance
+            async function authenticate() {
+                const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(window.auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(window.auth);
+                    }
+                } catch (error) {
+                    console.error("Tax page authentication failed:", error);
+                }
+            }
+            authenticate();
+        }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">FINANCE FORWARD</div>
+        <nav class="main-nav" aria-label="Main Navigation">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Learn</a>
+            <a href="tools.html">Tools</a>
+            <a href="taxes.html">Tax Help</a>
+            <a href="about.html">About Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="tax-guide" aria-labelledby="tax-heading">
+            <h2 id="tax-heading">Filing Your Taxes: A Beginner's Guide</h2>
+            <p>Taxes can be complicated, but understanding the basics can save you time and money. This section covers key concepts for individual filers.</p>
+
+            <!-- Key Dates -->
+            <div class="tax-info-block">
+                <h3>🗓️ Important Dates</h3>
+                <ul>
+                    <li><strong>January 31:</strong> Deadline for employers to mail out W-2 and 1099 forms.</li>
+                    <li><strong>April 15 (or next business day):</strong> Annual deadline to file federal income tax returns and pay any taxes owed.</li>
+                    <li><strong>October 15:</strong> Deadline for those who filed an extension.</li>
+                </ul>
+            </div>
+            
+            <!-- Filing Statuses -->
+            <div class="tax-info-block">
+                <h3>👥 Choosing Your Filing Status</h3>
+                <p>Your filing status determines your standard deduction and tax rate. Choose the one that accurately reflects your marital and family situation on the last day of the tax year (December 31).</p>
+                
+                <ul class="status-list">
+                    <li><strong>Single:</strong> Unmarried, divorced, or legally separated.</li>
+                    <li><strong>Married Filing Jointly (MFJ):</strong> Married couples who choose to file one combined return.</li>
+                    <li><strong>Married Filing Separately (MFS):</strong> Married couples who file two separate returns. This usually results in higher taxes but may be necessary in certain situations.</li>
+                    <li><strong>Head of Household (HOH):</strong> Unmarried and paying more than half the cost of keeping up a home for yourself and a qualifying person (e.g., a dependent child).</li>
+                    <li><strong>Qualifying Widow(er):</strong> If your spouse died, you can sometimes use MFJ rates for two years following the death, provided you meet certain requirements.</li>
+                </ul>
+            </div>
+
+            <!-- Deductions and Credits -->
+            <div class="tax-info-block">
+                <h3>💰 Standard Deduction vs. Itemized Deductions</h3>
+                <p>You can reduce your taxable income by claiming either the standard deduction or itemizing your deductions. You should choose the method that gives you the largest deduction.</p>
+
+                <div class="deduction-comparison">
+                    <h4>Standard Deduction</h4>
+                    <p>A fixed dollar amount based on your filing status. This is the simplest option and is used by most taxpayers.</p>
+                    
+                    <h4>Itemized Deductions (Schedule A)</h4>
+                    <p>Requires tallying specific expenses, such as state and local taxes (SALT), mortgage interest, and charitable contributions. Only beneficial if your total itemized expenses exceed the standard deduction amount.</p>
+                </div>
+            </div>
+
+            <!-- Free Filing Resources -->
+            <div class="tax-info-block cta-resources">
+                <h3>✅ Find Free Tax Filing Assistance</h3>
+                <p>If your income is below a certain limit, you may qualify for free tax preparation services offered by the IRS or non-profit organizations.</p>
+                <ul class="resource-links">
+                    <li><a href="https://www.irs.gov/filing/free-file-fillable-forms" target="_blank" rel="noopener noreferrer">IRS Free File Program (External Link)</a></li>
+                    <li><a href="https://www.irs.gov/individuals/free-tax-return-preparation-for-you-by-volunteers" target="_blank" rel="noopener noreferrer">VITA/TCE Volunteer Assistance (External Link)</a></li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Finance Forward | Financial Stability Resources</p>
+    </footer>
+
+</body>
+</html>
