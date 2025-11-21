@@ -82,6 +82,6 @@ User Assessment: Develop the 30-second assessment quiz and the corresponding JS 
 📞 Contact
 For general inquiries, partnership opportunities or to report a bug, please contact:
 
-Email: gloriamuema2021@gmail.com
+Email: gloriamuema98@gmail.com
 
 Website:
